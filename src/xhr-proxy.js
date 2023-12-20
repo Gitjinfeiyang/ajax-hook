@@ -85,7 +85,8 @@ function makeHandler(next) {
 var RequestHandler = makeHandler(function (rq) {
   var xhr = this.xhr;
   rq = rq || xhr.config;
-  if([0,1].includes(xhr.readyState)){
+  if([0].includes(xhr.readyState)){
+    // 只有initial状态设置
     xhr.withCredentials = rq.withCredentials;
   }
   xhr.open(rq.method, rq.url, rq.async !== false, rq.user, rq.password);
